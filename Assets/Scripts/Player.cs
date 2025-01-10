@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private int _numSeedsPlanted;
 
     //testing the code lol 
+    //testing the code on laptop now!! 
 
     private void Start ()
     {
