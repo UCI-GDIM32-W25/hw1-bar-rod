@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         if (_numSeeds > 0){
             GameObject seedObject = Instantiate(_plantPrefab) as GameObject;
             seedObject.transform.position = _playerTransform.transform.position;
+            _numSeeds --;
         }
     }
 }
