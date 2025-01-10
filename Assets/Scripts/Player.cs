@@ -15,12 +15,16 @@ public class Player : MonoBehaviour
 
     private void Start ()
     {
-        
+        //initiates the starting values for the UI
+        _numSeedsLeft = 5;
+        _numSeedsPlanted = 0; 
+        //tells the UI the starting values
+        _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted);
     }
 
     private void Update()
     {
-        //making the player move
+        //making the player move with WASD keys
         if (Input.GetKey(KeyCode.W)) {
             _playerTransform.Translate(Vector3.up * _speed * Time.deltaTime);
         }
@@ -45,10 +49,19 @@ public class Player : MonoBehaviour
 
     public void PlantSeed ()
     {
+        //seeds will only be planted if there are still seeds remaining (if above 0)
         if (_numSeeds > 0){
+            //creates the seed at the location of the player 
             GameObject seedObject = Instantiate(_plantPrefab) as GameObject;
             seedObject.transform.position = _playerTransform.transform.position;
+
+            //descreases seed count for if statement
             _numSeeds --;
+
+            //updates variables for UI
+            _numSeedsLeft --;
+            _numSeedsPlanted ++; 
+            _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted);
         }
     }
 }
