@@ -36,10 +36,18 @@ public class Player : MonoBehaviour
          if (Input.GetKey(KeyCode.D)) {
             _playerTransform.Translate(Vector3.right * _speed * Time.deltaTime);
         }
+
+        //when player presses space, a seed will be planted 
+        if (Input.GetKeyDown(KeyCode.Space)){
+            PlantSeed();
+        }
     }
 
     public void PlantSeed ()
     {
-        
+        if (_numSeeds > 0){
+            GameObject seedObject = Instantiate(_plantPrefab) as GameObject;
+            seedObject.transform.position = _playerTransform.transform.position;
+        }
     }
 }
